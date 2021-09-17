@@ -7,7 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Card, IconButton, Paragraph, Searchbar, Title } from 'react-native-paper';
 import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 import { FlatGrid } from 'react-native-super-grid';
-
+import { Header } from 'react-native-elements';
+import { withRouter } from "react-router-native";
 
 var cardData = [{
     name: 'Toyota CHR',
@@ -81,7 +82,7 @@ function HomeScreen() {
                         size={20}
                         onPress={() => console.log('Pressed')}
                     />
-                    
+
 
                 </View>
                 <FlatGrid
@@ -148,9 +149,17 @@ function SettingsScreen() {
     );
 }
 
-function MainScreen() {
+
+
+function MainScreen({ navigation }) {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
+            <Header
+                placement="left"
+                backgroundColor="#7D86F5"
+                leftComponent={{ icon: 'arrow-back', color: '#fff', size: 30 }}
+                centerComponent={{ text: 'Post Ad ', style: { color: '#fff', fontSize: 22 } }}
+            />
             <Text>Main Screen</Text>
         </View>
     );
@@ -181,9 +190,9 @@ function LandingScreen() {
     const tabOffsetValue = React.useRef(new Animated.Value(0)).current;
     const [color, setColor] = React.useState(primaryColor);
 
-
     return (
         <NavigationContainer>
+        {/* <View> */}
             <Tab.Navigator screenOptions={({ route }) => ({
                 tabBarShowLabel: false,
                 tabBarStyle: [
@@ -304,13 +313,14 @@ function LandingScreen() {
 
 
                     )
-                }} listeners={({ navigation, route }) => ({
+                }} listeners={({ history, route }) => ({
                     tabPress: e => {
                         setColor('transparent')
                         Animated.spring(tabOffsetValue, {
                             toValue: getWidth() * 2,
                             useNativeDriver: true
                         }).start();
+                        history.push("/postAds")
                     }
                 })} />
 
@@ -381,7 +391,9 @@ function LandingScreen() {
             }} >
 
             </Animated.View>
-        </NavigationContainer>
+        {/* </View> */}
+
+         </NavigationContainer>
     );
 }
 
