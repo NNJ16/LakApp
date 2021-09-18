@@ -7,12 +7,13 @@ import PostAds from "./src/screens/Detailes/detailes";
 import { NativeRouter, Switch, Route } from "react-router-native";
 import { StyleSheet, View } from "react-native";
 import DetailScreen from "./src/screens/Detailes/detailes";
+import AdsImages from "./src/screens/adsImage/adsImage";
 
 const Stack = createNativeStackNavigator();
 
 
-const App = ()=>{
-  return(
+const App = () => {
+  return (
     // <NativeRouter>
     //     <View style={styles.container}>
     //       <Switch>
@@ -22,7 +23,8 @@ const App = ()=>{
     //     </View>
     //   </NativeRouter>
     // <LandingScreen/>
-    <DetailScreen />
+    // <DetailScreen />
+    <AdsImages />
     // <SignUp/>
   );
 }
